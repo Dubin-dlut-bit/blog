@@ -31,7 +31,6 @@
  变量名：XILINX      变量值：D:\Xilinx\14.7\ISE_DS\ISE\  （即安装ISE的路径）
  变量名：XILINX_EDK  变量值：D:\Xilinx\14.7\ISE_DS\EDK\  （即安装EDK的路径）
  ```
-
 2. 使用路径`D:\Xilinx\14.7\ISE_DS\EDK\bin\nt\xps.exe`下打开即可，这是32位系统使用的XPS。
 
 ---
@@ -50,7 +49,9 @@
 7. 生成`fsbl.elf`：可以在ISE中选中system.xmp在下面的Processes中选择`Export Hardware Design To SDK`，带不带bit流生成均可，打开SDK后的操作和以前一样。
 
 **遇到的问题**：
- - 在`Implement Design`过程中显示Error，<font color = red>vga_flyinglogo_0_GREEN_O_pin[0]等几个引脚没有配置好</font>，是原有xmp工程中引脚约束的问题，打开用户约束设置，按照如图所示对比填写。
+- 错误方式：在`Implement Design`过程中显示Error，<font color = red>vga_flyinglogo_0_GREEN_O_pin[0]等几个引脚没有配置好</font>，是原有xmp工程中引脚约束的问题；
+- 可行的解决方案：
+<br>打开用户约束设置，按照如图所示对比填写。
 
  ![Image](./images/record/HDMI引脚约束.PNG)
 
@@ -125,6 +126,7 @@ Ubuntu14.04下安装ISE14.7步骤：
  $source settings32.sh
  $ise（注意是小写的ise才能启动）
  ```
+
 ><font color = "red">**PS**</font>：以后启动ISE的操作都要按照步骤5的流程，进入目录，运行shell文件，再运行ISE。可以将这几条命令存在脚本文件中，通过`source shell.sh`调用运行多条命令。（在运行完`settings32.sh`脚本后，输入`xps`启动XPS，输入`xsdk`启动SDK）。
 
 ---
