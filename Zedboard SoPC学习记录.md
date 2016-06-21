@@ -8,7 +8,8 @@
 ---
 - 2016.6.20
 ---
-和刘文超师兄开会，确定一下几点：<br>
+和刘文超师兄开会，确定一下几点：
+
 1. 要对PS和PL之间的高速数据传输进行探索，如比较申师姐使用的**CDMA**和可能会以后使用的**DMA**；
 
 2. Verilog语言学习一个星期，并且通过小例子，融合成一个小型系统，进行数据流设计；
@@ -24,10 +25,10 @@
 
 1. 添加环境变量：在**系统变量**中新建两个环境变量，如下：
 
-```
-变量名：XILINX      变量值：D:\Xilinx\14.7\ISE_DS\ISE\  （即安装ISE的路径）
-变量名：XILINX_EDK  变量值：D:\Xilinx\14.7\ISE_DS\EDK\  （即安装EDK的路径）
-```
+ ```
+ 变量名：XILINX      变量值：D:\Xilinx\14.7\ISE_DS\ISE\  （即安装ISE的路径）
+ 变量名：XILINX_EDK  变量值：D:\Xilinx\14.7\ISE_DS\EDK\  （即安装EDK的路径）
+ ```
 
 2. 使用路径`D:\Xilinx\14.7\ISE_DS\EDK\bin\nt\xps.exe`下打开即可，这是32位系统使用的XPS。
 ---
@@ -36,8 +37,9 @@
 - 2016.6.15
 ---
 将连接HDMI的XPS工程导入ISE，导入方法为：
-1. 在ISE界面Design面板中右击工程文件夹，选择`Add Source...`，选择XPS的工程文件`system.xmp`；
-2. 在Design面板`Hierarchy`中选中`system.xmp`文件，在下面的`Processes`中选择`Create Schematic Symbol`；
+
+1. 在ISE界面Design面板中右击工程文件夹，选择`Add Source...`，选择XPS的工程文件`system.xmp`；<br>
+2. 在Design面板`Hierarchy`中选中`system.xmp`文件，在下面的`Processes`中选择`Create Schematic Symbol`；<br>
 3. 生成成功后选择`Generate Top HDL Source`，就会在Hierarchy窗口中生成`system_top.v`，此时XPS的工程就可以作为模块调用；
 4. 选中`system_top.v`可以进行`User Constraints`设置，基本都会自动生成；
 5. 接着进行`Synthesize`，`Implement Design`和`Generate Programming File`；
