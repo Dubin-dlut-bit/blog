@@ -10,8 +10,11 @@
 ---
 和刘文超师兄开会，确定一下几点：
 1. 要对PS和PL之间的高速数据传输进行探索，如比较申师姐使用的**CDMA**和可能会以后使用的**DMA**；
+
 2. Verilog语言学习一个星期，并且通过小例子，融合成一个小型系统，进行数据流设计；
+
 3. 驱动编写要纳入整体设计流程之中，学习相应的驱动设计方法；
+
 4. 师兄的PPT还是要认真研究一下。
 
 ---
@@ -23,6 +26,7 @@
 变量名：XILINX      变量值：D:\Xilinx\14.7\ISE_DS\ISE\  （即安装ISE的路径）
 变量名：XILINX_EDK  变量值：D:\Xilinx\14.7\ISE_DS\EDK\  （即安装EDK的路径）
 ```
+
 2. 使用路径`D:\Xilinx\14.7\ISE_DS\EDK\bin\nt\xps.exe`下打开即可，这是32位系统使用的XPS。
 ---
 
@@ -79,7 +83,7 @@ PL读写操作BRAM：
 <br>这是由于程序app_cpu1.c中存在中断程序，而之前的操作缺少相应的硬件设备设置，所以出现未定义的参数；
 可行的解决方案：将和中断相关的程序注释掉，即：`//Initialize driver instance for PL IRQ`部分和`Status`的使用部分，如图所示：
 
- ![Image](./Images/record/AMP教程注释一部分程序.PNG)
+ ![Image](./images/record/AMP教程注释一部分程序.PNG)
 
 ---
 使用Zedboard实现双核异步AMP模式的教程时，生成`BOOT.BIN`中在SDK生成`amp_fsbl.elf`文件中，针对ISE14.7很可能在创建完工程后编译出现错误的情况：
