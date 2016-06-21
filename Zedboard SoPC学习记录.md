@@ -12,12 +12,9 @@
 ---
 和刘文超师兄开会，确定一下几点：
 
-1. 要对PS和PL之间的高速数据传输进行探索，如比较申师姐使用的**CDMA**和可能会以后使用的**DMA**；
-
+1. 要对PS和PL之间的高速数据传输进行探索，如比较申师姐使用的**CDMA**和可能会以后使用的**DMA**；<br>
 2. Verilog语言学习一个星期，并且通过小例子，融合成一个小型系统，进行数据流设计；
-
 3. 驱动编写要纳入整体设计流程之中，学习相应的驱动设计方法；
-
 4. 师兄的PPT还是要认真研究一下。
 
 ---
@@ -27,7 +24,7 @@
 ---
 解决XPS在win10系统下打开文件夹就闪退的问题；
 
-1. 添加环境变量：在**系统变量**中新建两个环境变量，如下：
+1. 添加环境变量：在**系统变量**中新建两个环境变量，如下：<br>
  ```
  变量名：XILINX      变量值：D:\Xilinx\14.7\ISE_DS\ISE\  （即安装ISE的路径）
  变量名：XILINX_EDK  变量值：D:\Xilinx\14.7\ISE_DS\EDK\  （即安装EDK的路径）
@@ -103,23 +100,23 @@ Ubuntu14.04下安装ISE14.7步骤：
 
 1. （实验室已有license，所以可跳过1）登录[china.xilinx.com](http://china.xilinx.com)，注册帐号（下载和获取证书需要登录，注册时有些选项需要用英文填写，确保所填邮箱正确）；<br>
 2. 下载**`Xilinx_ISE_DS_14.7_1015.tar`**（8.4GB）（Window和Linux通用版，注意后缀.tar）；
-3. 进入安装包所在文件夹，解压：
-```
-$cd /media/New/download（此命令根据自己的下载路径）
-$sudo tar xvf Xilinx_ISE_DS_Lin_13.2_O.61xd.0.0.tar
-```
-4. 安装包被解压到当前目录，运行安装程序
-```
-$cd Xilinx_ISE_DS_Lin_13.2_O.61xd.0.0
-$sudo ./xsetup
-```
+3. 进入安装包所在文件夹，解压：<br>
+ ```
+ $cd /media/New/download（此命令根据自己的下载路径）
+ $sudo tar xvf Xilinx_ISE_DS_Lin_13.2_O.61xd.0.0.tar
+ ```
+4. 安装包被解压到当前目录，运行安装程序<br>
+ ```
+ $cd Xilinx_ISE_DS_Lin_13.2_O.61xd.0.0
+ $sudo ./xsetup
+ ```
 安装程序是图形界面的，跟windows的安装程序差不多，根据提示进行就可以，会有两次选择，第一次选**System Edition**，第二次的选择**全打勾**，安装路径一般选择装在/opt下，配置好以后开始安装。安装过程中很有可能会提示驱动安装失败，先不管；还会提示证书，这个也不管，关掉后会继续安装，直到结束。
-5. 安装结束后，进入目录，先运行一个shell文件，配置环境变量，然后运行ISE：
-```
-$cd /opt/Xilinx/13.2/ISE_DS/
-$source settings32.sh
-$ise（注意是小写的ise才能启动）
-```
+5. 安装结束后，进入目录，先运行一个shell文件，配置环境变量，然后运行ISE：<br>
+ ```
+ $cd /opt/Xilinx/13.2/ISE_DS/
+ $source settings32.sh
+ $ise（注意是小写的ise才能启动）
+ ```
 
 ><font color = "red">**PS**</font>：以后启动ISE的操作都要按照步骤5的流程，进入目录，运行shell文件，再运行ISE。可以将这几条命令存在脚本文件中，通过`source shell.sh`调用运行多条命令。（在运行完`settings32.sh`脚本后，输入`xps`启动XPS，输入`xsdk`启动SDK）。
 
