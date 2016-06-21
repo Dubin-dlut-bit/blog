@@ -88,9 +88,8 @@ PL读写操作BRAM：
 ---
 使用Zedboard实现双核异步AMP模式的教程时，生成`BOOT.BIN`中在SDK生成`app_cpu1.elf`文件中，建立app_cpu1工程，可能出现错误：
 - 错误方式：`"XPAR_IRQ_GEN_0_BASEADDR" undeclared Error 1`
-
-- 可行的解决方案：
-<br>这是由于程序app_cpu1.c中存在中断程序，而之前的操作缺少相应的硬件设备设置，所以出现未定义的参数；
+- 可行的解决方案：<br>
+这是由于程序app_cpu1.c中存在中断程序，而之前的操作缺少相应的硬件设备设置，所以出现未定义的参数；
 可行的解决方案：将和中断相关的程序注释掉，即：`//Initialize driver instance for PL IRQ`部分和`Status`的使用部分，如图所示：
 
  ![Image](./images/record/AMP教程注释一部分程序.PNG)
@@ -99,7 +98,8 @@ PL读写操作BRAM：
 使用Zedboard实现双核异步AMP模式的教程时，生成`BOOT.BIN`中在SDK生成`amp_fsbl.elf`文件中，针对ISE14.7很可能在创建完工程后编译出现错误的情况：
 - 错误方式：`cannot find -lrsa  Error 1`
 
-- 可行的解决方案：<br>此处OS Platform选择**`standalone_amp`**而不是standalone在第一次编译仍然出现 cannot find -lrsa  Error 1之后，右键工程文件夹，（即amp_fsbl文件夹）在菜单中选择`C/C++ Build Settings`这一选项，点击`Tool Settings`选项卡中`ARM gcc linker`下的`Libraries`；<br>将其右侧窗口中的两个部分`Libraries(-l)`和`Library search path(-L)`中的内容全部删除，点击OK重新编译后应该可以通过，并产生相应的amp_fsbl.elf文件。
+- 可行的解决方案：<br>
+此处OS Platform选择**`standalone_amp`**而不是standalone在第一次编译仍然出现 cannot find -lrsa  Error 1之后，右键工程文件夹，（即amp_fsbl文件夹）在菜单中选择`C/C++ Build Settings`这一选项，点击`Tool Settings`选项卡中`ARM gcc linker`下的`Libraries`；<br>将其右侧窗口中的两个部分`Libraries(-l)`和`Library search path(-L)`中的内容全部删除，点击OK重新编译后应该可以通过，并产生相应的amp_fsbl.elf文件。
 
 ---
 Ubuntu14.04下安装ISE14.7步骤：
@@ -132,9 +132,9 @@ Ubuntu14.04下安装ISE14.7步骤：
 ---
 Ubuntu14.04自带的ibus输入法很可能存在双拼的Bug：
 
-- 即无法正确的对输入的拼音进行断句，造成输入`nihao`时输出`你哈o`这样的问题。
-- 解决方法如下：
-<br>在终端输入命令：`ibus-deamon –drx`，再进行重启，就可以了。
+- 错误方式：无法正确的对输入的拼音进行断句，造成输入`nihao`时输出`你哈o`这样的问题；
+- 可行的解决方案：<br>
+在终端输入命令：`ibus-deamon –drx`，再进行重启，就可以了。
 
 ---
 初次使用Ubuntu发现无法切换Root权限状态，可以按照如下步骤做：
@@ -152,7 +152,8 @@ Ubuntu14.04自带的ibus输入法很可能存在双拼的Bug：
 ---
 主要问题（概述）：
 - 问题形式（错误类型）；
-- 可行的解决方案；
+- 可行的解决方案；<br>
+方案A
 
 ---
 操作步骤：（同一日期不同记录用`---`进行隔开)
