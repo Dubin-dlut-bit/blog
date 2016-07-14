@@ -1,15 +1,38 @@
 # Zedboard SoPC学习记录
------
-- 2016.6.21
+---
+## 2016.6.30
+---
+进行CDMA连接DDR和BRAM进行数据搬移的过程中无法检测到CDMA传输完成状态（DMA Transfer Status）的问题：
+- 问题形式：在XPS中进行硬件连接，**CDMA作为Master控制PS处理器和BRAM控制器**，进行DRCs无<font color = red>ERROR</font>，上板子测试发现设置完传输源地址和目的地址，开始传输后检测不到**传输完成的中断信号**（DMA Transfer Status），即程序无法跳出等待结束信号的循环。<br>
+原因是**CDMA主控的AXI interconnect线的<font color = red>时钟</font>没有设置**。
+- 可行的解决方案：<br>
+在相应的Port面板中设置AXI interconnect线的时钟。这个问题并不会以<font color = red>ERROR</font>的形式体现出来，而是<font color = yellow>WARNING</font>，需要格外注意；对于其他的AXI interconnect线也要注意。
+
+---
+
+---
+## 2016.6.21
 ---
 研究在C语言中进行内存写入数据时的**`Cache`**机制：
 
 1. 关键字`volatile`：跳过缓存机制直接从DDR中读取数据；
 
 ---
+AXI-CDMA进行数据搬移的使用过程（Simple模式）：
+
+1. CDMA控制器物理地址内存映射；<br>
+2. CDMA状态重置(Reset)；
+3. 开中断(Enable Interrupt)；
+4. 检查线路状态（Check Bus Idle）；
+5. 检查DMA模式并将其设定为简单模式（Switch it to Simple Mode）；
+6. 设定数据源地址（Source Address）和目的地址（Destination Address）；
+7. 设定传输数据大小，进行传输（Write Byte to Transfer）；
+8. 返回传输完成中断信号（DMA Transfer Status）
 
 ---
-- 2016.6.20
+
+---
+## 2016.6.20
 ---
 和刘文超师兄开会，确定一下几点：
 
@@ -36,7 +59,7 @@
 ---
 
 ---
-- 2016.6.15
+## 2016.6.15
 ---
 将连接HDMI的XPS工程导入ISE，导入方法为：
 
@@ -84,7 +107,7 @@ PL读写操作BRAM：
 ---
 
 ---
-- 2016.4-2016.5
+## 2016.4-2016.5
 ---
 使用Zedboard实现双核异步AMP模式的教程时，生成`BOOT.BIN`中在SDK生成`app_cpu1.elf`文件中，建立app_cpu1工程，可能出现错误：
 - 错误方式：`"XPAR_IRQ_GEN_0_BASEADDR" undeclared Error 1`
@@ -113,12 +136,12 @@ Ubuntu14.04下安装ISE14.7步骤：
  $sudo tar xvf Xilinx_ISE_DS_14.7_1015.tar
  ```
 4. 安装包被解压到当前目录，运行安装程序：
-
  ```
  $cd Xilinx_ISE_DS_14.7_1015
  $sudo ./xsetup
  ```
  安装程序是图形界面的，跟windows的安装程序差不多，根据提示进行就可以，会有两次选择，第一次选**System Edition**，第二次的选择**全打勾**，安装路径一般选择装在/opt下，配置好以后开始安装。安装过程中很有可能会提示驱动安装失败，先不管；还会提示证书，这个也不管，关掉后会继续安装，直到结束。
+
 5. 安装结束后，进入目录，先运行一个shell文件，配置环境变量，然后运行ISE：
  
  ```
@@ -148,7 +171,7 @@ Ubuntu14.04自带的ibus输入法很可能存在双拼的Bug：
 -----
 # 记录文档书写规范：
 ---
-- 年.月.日（采用压栈顺序记录）
+## 年.月.日（采用压栈顺序记录）
 ---
 主要问题（概述）：
 - 问题形式（错误类型）；
