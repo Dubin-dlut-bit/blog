@@ -60,12 +60,14 @@ Mat I, img, I1, I2, dst, A, B;
  add(I1, I2, dst, mask, dtype);
  scaleAdd(I1, scale, I2, dst);   // dst=scale*I1+I2;
  ```
+ 
 2. 减法
  ```
  absdiff(I1, I2, I);             // I = |I1 - I2|;
  A - B; A - s; s - A; -A;        // 直接进行减法操作（大小需要一致）
  subtract(I1, I2, dst);
  ```
+
 3. 乘法
  ```
  I = 3 * I;                      // 数乘
