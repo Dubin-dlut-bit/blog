@@ -42,6 +42,7 @@ if ( s.at<float>(2) <= 1e-6*s.at<float>(0) )
 关于一些C/C++的知识：
 - C++的`iostream`和C中的`stdio.h`：<br>
 C++中的`iostream`头文件是包含`stdio.h`的标准输入输出的，前者范围更广，所含有的内容更多。
+
 ---
 
 ---
@@ -60,7 +61,7 @@ Mat I, img, I1, I2, dst, A, B;
  add(I1, I2, dst, mask, dtype);
  scaleAdd(I1, scale, I2, dst);   // dst=scale*I1+I2;
  ```
- 
+
 2. 减法
  ```
  absdiff(I1, I2, I);             // I = |I1 - I2|;
@@ -152,8 +153,7 @@ Mat I, img, I1, I2, dst, A, B;
          I.at<Vec3b>(i, j)[2] = r;
      }
  ```
-
- - 其他机制
+ - 其他机制：
  ```
  Mat::total();                   // 返回一共的元素数量
  int Mat::type();                // 返回他的类型CV_16SC3之类
