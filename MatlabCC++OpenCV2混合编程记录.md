@@ -55,118 +55,118 @@ Mat I, img, I1, I2, dst, A, B;
 ```
 
 1. 加法
-```
-I = I1 + I2;                    // 等同add(I1,I2,I);
-add(I1, I2, dst, mask, dtype);
-scaleAdd(I1, scale, I2, dst);   // dst=scale*I1+I2;
-```
+ ```
+ I = I1 + I2;                    // 等同add(I1,I2,I);
+ add(I1, I2, dst, mask, dtype);
+ scaleAdd(I1, scale, I2, dst);   // dst=scale*I1+I2;
+ ```
 2. 减法
-```
-absdiff(I1, I2, I);             // I = |I1 - I2|;
-A - B; A - s; s - A; -A;        // 直接进行减法操作（大小需要一致）
-subtract(I1, I2, dst);
-```
+ ```
+ absdiff(I1, I2, I);             // I = |I1 - I2|;
+ A - B; A - s; s - A; -A;        // 直接进行减法操作（大小需要一致）
+ subtract(I1, I2, dst);
+ ```
 3. 乘法
-```
-I = 3 * I;                      // 数乘
-I = I.mul(3);                   // 点乘，参数可以是数或同样大小的矩阵;
-I = I.mul(I,3);                 // 等价于I = 3*I.^2，可以带多个参数；
-C = A * B;                      // 矩阵相乘
+ ```
+ I = 3 * I;                      // 数乘
+ I = I.mul(3);                   // 点乘，参数可以是数或同样大小的矩阵;
+ I = I.mul(I,3);                 // 等价于I = 3*I.^2，可以带多个参数；
+ C = A * B;                      // 矩阵相乘
 
-Mat::cross(Mat);                // 三维向量(或矩阵)的叉乘，A.cross(B)
-Mat::dot(Mat);                  // 2个向量(或矩阵)的点乘，A.dot(B)
-pow(src, double p, dst);        // 幂，如果p是整数dst = src^p;其他|src|^p
-```
+ Mat::cross(Mat);                // 三维向量(或矩阵)的叉乘，A.cross(B)
+ Mat::dot(Mat);                  // 2个向量(或矩阵)的点乘，A.dot(B)
+ pow(src, double p, dst);        // 幂，如果p是整数dst = src^p;其他|src|^p
+ ```
 
 4. 除法（用得比较少）
-```
-A / B; alpha / A;               // 点除
-```
+ ```
+ A / B; alpha / A;               // 点除
+ ```
 5. 转换
-```
-I.convertTo(I1, CV_32F);        // 类型转换
-cvtColor(src, dst, TYPE);       // 通道（颜色）类型转换
-A.t();                          // 转置
-
-flip(I, dst, int flipCode);     // 翻转
-// flipCode = 0是上下翻转，>0 时左右翻转, <0 时一起来
-
-resize(src, dst, dst.size());   // 图像src进行形变成dst的大小
-```
+ ```
+ I.convertTo(I1, CV_32F);        // 类型转换
+ cvtColor(src, dst, TYPE);       // 通道（颜色）类型转换
+ A.t();                          // 转置
+ 
+ flip(I, dst, int flipCode);     // 翻转
+ // flipCode = 0是上下翻转，>0 时左右翻转, <0 时一起来
+ 
+ resize(src, dst, dst.size());   // 图像src进行形变成dst的大小
+ ```
 
 6. 其他
-```
-Scalar s = sum(I);              // 各通道求和
-Scalar m = mean(I);             // 各通道求平均
-
-Mat RowClone = C.row(1).clone();// 复制第2行
-```
+ ```
+ Scalar s = sum(I);              // 各通道求和
+ Scalar m = mean(I);             // 各通道求平均
+ 
+ Mat RowClone = C.row(1).clone();// 复制第2行
+ ```
 
 7. 初始化
-```
-Mat I = imread("Image.png");    // 直接读取图像进行初始化
+ ```
+ Mat I = imread("Image.png");    // 直接读取图像进行初始化
+ 
+ // 直接生成某种类型的矩阵
+ Mat I;
+ I.create(row, col, TYPE);
+ 
+ // 通过矩阵img来初始化矩阵I
+ Mat I(img, Rect(10, 10, 100, 100));     // 用img的一块初始化I。
+ Mat I = img(Range:all(), Range(1, 3));  // 所有行，2~3列
+ Mat I = img.clone();                    // 完全复制
+ img.copyTo(I);                          // 传递矩阵头（注意顺序）
+ 
+ Mat I(2, 2, CV_8UC3, Scalar(0, 0, 255));
+ // 等效于产生了一个矩阵I = [  (0,0,255), (0,0,255);
+                             (0,0,255), (0,0,255)  ];
+ 
+ // 特殊矩阵类型的初始化
+ Mat E = Mat::eye(4, 4, CV_64F);         // 对角矩阵
+ Mat O = Mat::ones(2, 2, CV_32F);        // 全一矩阵
+ Mat Z = Mat::zeros(3, 3, CV_8UC1);      // 全零矩阵
+ 
+ // 如果是简单矩阵的初始化
+ Mat C = (Mat_<double>(2, 2) << 0, -1, 2, 3); 
+ 
+ // 通过关系运算建立一个mask
+ Mat mask = src < 0;
+ ```
 
-// 直接生成某种类型的矩阵
-Mat I;
-I.create(row, col, TYPE);
+8. 矩阵读取和修改
 
-// 通过矩阵img来初始化矩阵I
-Mat I(img, Rect(10, 10, 100, 100));     // 用img的一块初始化I。
-Mat I = img(Range:all(), Range(1, 3));  // 所有行，2~3列
-Mat I = img.clone();                    // 完全复制
-img.copyTo(I);                          // 传递矩阵头（注意顺序）
-
-Mat I(2, 2, CV_8UC3, Scalar(0, 0, 255));
-// 等效于产生了一个矩阵I = [  (0,0,255), (0,0,255);
-                            (0,0,255), (0,0,255)  ];
-
-// 特殊矩阵类型的初始化
-Mat E = Mat::eye(4, 4, CV_64F);         // 对角矩阵
-Mat O = Mat::ones(2, 2, CV_32F);        // 全一矩阵
-Mat Z = Mat::zeros(3, 3, CV_8UC1);      // 全零矩阵
-
-// 如果是简单矩阵的初始化
-Mat C = (Mat_<double>(2, 2) << 0, -1, 2, 3); 
-
-// 通过关系运算建立一个mask
-Mat mask = src < 0;
-
-```
-
-8. 矩阵读取和修改<br>
  - 1个通道：
-```
-for(int i = 0;i < I.rows; ++i)
-    for(int j = 0; j < I.cols; ++j)
-        I.at<uchar>(i, j) = k;
-```
+ ```
+ for(int i = 0;i < I.rows; ++i)
+     for(int j = 0; j < I.cols; ++j)
+         I.at<uchar>(i, j) = k;
+ ```
  - 3个通道：
-```
-for(int i = 0; i < I.rows; ++i)
-    for(int j = 0; j < I.cols; ++j)
-    {
-        I.at<Vec3b>(i, j)[0] = b;
-        I.at<Vec3b>(i, j)[1] = g;
-        I.at<Vec3b>(i, j)[2] = r;
-    }
-```
+ ```
+ for(int i = 0; i < I.rows; ++i)
+     for(int j = 0; j < I.cols; ++j)
+     {
+         I.at<Vec3b>(i, j)[0] = b;
+         I.at<Vec3b>(i, j)[1] = g;
+         I.at<Vec3b>(i, j)[2] = r;
+     }
+ ```
 
  - 其他机制
-```
-Mat::total();                   // 返回一共的元素数量
-int Mat::type();                // 返回他的类型CV_16SC3之类
-int Mat::depth();               // 返回深度:CV_16SC3-->CV_16S
-int Mat::channels();            // 返回通道数
-
-Size Mat::size();               
-// 返回Size(cols,rows)；如果大于2维，则返回(-1,-1)，先宽cols再高rows
-
-bool Mat::empty();              
-// 如果没有元素返回1,即Mat::total() == 0或者Mat::data == NULL
-
-uchar *Mat::ptr(int i = 0)      // 指向第i行
-I.rows(0).setTo(Scalar(0));     // 把第一行清零
-```
+ ```
+ Mat::total();                   // 返回一共的元素数量
+ int Mat::type();                // 返回他的类型CV_16SC3之类
+ int Mat::depth();               // 返回深度:CV_16SC3-->CV_16S
+ int Mat::channels();            // 返回通道数
+ 
+ Size Mat::size();               
+ // 返回Size(cols,rows)；如果大于2维，则返回(-1,-1)，先宽cols再高rows
+ 
+ bool Mat::empty();              
+ // 如果没有元素返回1,即Mat::total() == 0或者Mat::data == NULL
+ 
+ uchar *Mat::ptr(int i = 0)      // 指向第i行
+ I.rows(0).setTo(Scalar(0));     // 把第一行清零
+ ```
 
 ---
 二、其他数据结构
