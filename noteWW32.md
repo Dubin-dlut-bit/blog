@@ -64,3 +64,17 @@ Model-View技术用于将部件中的数据从试图中分离出来，便于处�
 
 
 ### [QSortFilterProxyModel简介及小例](http://blog.csdn.net/u010002704/article/details/41246929)
+
+### 使用spy对Procise的界面进行调试，显示GUI上每个空间的属性信息
+
+使用spy需要对Procise工程重新编译，操作如下：（在E盘procise2.3_gui文件夹下）
+
+``` shell
+cd build
+call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\vcvars64.bat"
+set qmake=D:\opt\Qt\qt-5.8.0\msvc2013_64\bin\qmake
+call E:\Home\dubin\workspace\procise2.3_gui\build\make_vsproj.bat DEFINES+=GUI_QTCL_
+cd /d E:\Home\dubin\workspace\procise2.3_gui\build\\..
+D:\opt\Qt\qt-5.8.0\msvc2013_64\bin\qmake -recursive -spec win32-msvc2013 -tp vc procise.pro DEFINES+=GUI_QTCL_
+```
+主要是加入了包含GUI_QTCL_的代码，可以使用spy工具进行调试。关于类似的spy++工具的[介绍](http://blog.csdn.net/dpsying/article/details/51913947)
