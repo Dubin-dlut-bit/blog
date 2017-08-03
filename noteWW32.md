@@ -62,8 +62,19 @@ Model-View技术用于将部件中的数据从试图中分离出来，便于处�
 
 ### 3.2  Working with Selections
 
+- 实现了对于给定的树状结构，选定特定的结点，可以显示其名称和层级
+
+- 重点在于显示层级这一部分。因为Qt在QTreeView提供了一种QModelIndex类型指针，可以通过调用其parent方法来实现对于节点的父节点的查找和指向，这样通过递归的方式就可以不断查找到树的根节点，实现对于层次的计算。
+
+- [关于QModelIndex的使用的介绍](http://www.codeweblog.com/qmodelindex-role-model介紹-二/)
+
+### 3.3 Predefined Models
+
+- 预先定义的一些Model类，目前使用过的只有QStandardItemModel，用于表示有层级结构的数据；其他的随用随看就可以
 
 ### [QSortFilterProxyModel简介及小例](http://blog.csdn.net/u010002704/article/details/41246929)
+
+- 官方示例的[文档](https://doc.qt.io/qt-5/qtwidgets-itemviews-customsortfiltermodel-example.html)
 
 ### 使用spy对Procise的界面进行调试，显示GUI上每个空间的属性信息
 
@@ -78,3 +89,20 @@ cd /d E:\Home\dubin\workspace\procise2.3_gui\build\\..
 D:\opt\Qt\qt-5.8.0\msvc2013_64\bin\qmake -recursive -spec win32-msvc2013 -tp vc procise.pro DEFINES+=GUI_QTCL_
 ```
 主要是加入了包含GUI_QTCL_的代码，可以使用spy工具进行调试。关于类似的spy++工具的[介绍](http://blog.csdn.net/dpsying/article/details/51913947)
+
+---
+## 2017.8.3 继续Qt的ModelView部分
+
+<font color = red>基础知识：</font>[C++重载、重写和重定义的概念区分](http://www.cnblogs.com/weizhixiang/articles/5760286.html)
+
+作为所有model的基类的抽象类[QAbstractItemModel](http://doc.qt.io/qt-5/qabstractitemmodel.html)，存在5个在生成派生类时必须要进行重写的纯虚函数：
+- columnCount
+- rowCount
+- data
+- index
+- parent
+
+<font color = yellow>知识补充：</font>[C++类成员函数结尾加入const关键字的意义](http://blog.csdn.net/cnhk1225/article/details/49121183)、可以翻书看一些关于[虚函数的知识](http://blog.csdn.net/hackbuteer1/article/details/7558868)
+
+
+
