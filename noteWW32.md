@@ -76,6 +76,8 @@ Model-View技术用于将部件中的数据从试图中分离出来，便于处�
 
 - 官方示例的[文档](https://doc.qt.io/qt-5/qtwidgets-itemviews-customsortfiltermodel-example.html)
 
+- 一篇中文的[博客](http://devbean.blog.51cto.com/448512/266500/)
+
 ### 使用spy对Procise的界面进行调试，显示GUI上每个空间的属性信息
 
 使用spy需要对Procise工程重新编译，操作如下：（在E盘procise2.3_gui文件夹下）
@@ -104,5 +106,7 @@ D:\opt\Qt\qt-5.8.0\msvc2013_64\bin\qmake -recursive -spec win32-msvc2013 -tp vc 
 
 <font color = yellow>知识补充：</font>[C++类成员函数结尾加入const关键字的意义](http://blog.csdn.net/cnhk1225/article/details/49121183)、可以翻书看一些关于[虚函数的知识](http://blog.csdn.net/hackbuteer1/article/details/7558868)
 
+---
+## 2017.8.4 学习Qt布局管理相关知识
 
-
+参见《Qt Creator快速入门》第四章
