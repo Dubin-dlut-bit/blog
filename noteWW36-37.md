@@ -1,0 +1,1 @@
+difference between stateChanged(int) and toggled(bool) in QCheckBox
